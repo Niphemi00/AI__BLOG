@@ -1,0 +1,67 @@
+
+1. install django using pip or pip3 on mac
+2. use the {django-admin startproject (projectname) }to create your project
+3.enter the project directory and run python3 manage.py startapp (app name) to create your app
+4. go into your project settings and add your app under installed app in a string format
+5.. create a file named url.py in the app folder 
+  - import path from django.urls inside your url.py file of your app
+  - Also import views from . inside the url.py file
+  - create a list for your website urls in the format below
+      - urlpatterns = [
+          path('', views.index, name='index')
+        ]
+        - where urlpatterns is the variable name
+        - path refers to the url function that is reponsible for it designated url
+          it takes three parameters i.e " path(url name, views.functionForUrl, name='function name')
+6. go to views and make functions with commands that would render your webpages
+7. go into the url file of your project and import include from django.urls
+    - 'include' it helps the user look for your url match in your app and render it
+8. include the path parameters i.e " path(url name, include(app name.urls))
+9. create a Template folder to help you hold all your html files
+10. go into the settings file of your app and add your templates
+     in the Templates scrtion inside the base dir
+     i.e "DIRS": [BASE_DIR, 'templates']
+
+11. go to view and return every template you wish to view
+12. regarding databases use what ever you feel you are good at
+13. set up your database and connect it to django project 
+    - Replace your_db_name, your_db_username, your_db_password, and 
+      your_db_endpoint with the corresponding values from your RDS instance.
+    - make the migrations if it's a "aws rds mysql db" using
+      - make a mysql db on your aws database account
+      - open up your sql workbenh locally and create a connection
+      - inside the connection fill in the required details. where;
+          - name is your master user name
+          - hostname is your aws host
+          - password is your aws db instance password 
+14. go to your terminal and run
+     "python(3) manage.py makemigration"
+     "python manage.py migrate 
+
+
+nB: use pip(3) freeze>requirements.txt to write all your installed packages into a text file
+
+
+
+
+# LOGIN SESSION
+1. create a super user so that he/she can supervise the running and management of the website you can do 
+that by running
+  - "python3 manage.py createsuperuser", on your terminal..it would greturn fields that needs filling
+  - you can choose to leave the email fields empty by clicking enter
+  - input your password and the username
+
+2. go to your views page and create the needed urls just like you included the index url 
+  and add newly made url functions
+3. add your nav link routes
+4. for your forms give it an action that returns your data to the page by leave the quotation marks empty, and also add the method
+  attribute that accepts post as its method
+5. remember to add the {% crsf_token %} inside the form just after the form tag to prevent frauding
+    crsf : cross side request fraudery
+6. use the jinja templates for passing variables '{{ variablename }}' to pass variables from the django backend side
+7. 6. use the jinja templates for linking '{% linkname %}' to link values from the django backend side
+8. go into the views file and import the following for authentication, redirecting and the rest
+        from django.shortcuts import render, redirect
+        from django.contrib.auth.models import User
+        from django.contrib.auth import authenticate, login, logout
+  
